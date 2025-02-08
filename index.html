@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Invitation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-100 flex items-center justify-center h-screen">
+  <div class="text-center p-10 bg-white rounded-2xl shadow-lg w-[90%] max-w-lg">
+    <h1 class="text-2xl md:text-4xl font-bold text-pink-600 mb-2 leading-tight">Hi</h1>
+    <h1 class="text-2xl md:text-4xl font-bold text-pink-600 mb-4 leading-tight">Hannah Kristine F. Juan!</h1>
+    <h2 class="text-4xl font-semibold text-pink-600 mb-4">
+      Will you go out with me tomorrow after lunch?
+    </h2>
+    <p class="text-lg text-gray-600 mb-6">I’ve planned something a bit special.</p>
+
+    <!-- Terms and Conditions section -->
+    <div class="text-left mb-4">
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="termsCheckbox" class="h-5 w-5 text-pink-500 border-gray-300 rounded focus:ring-pink-500" disabled>
+        <span class="text-sm text-gray-600">
+          I agree to the <a href="#" class="text-pink-500 underline" id="termsLink">Terms and Conditions</a>.
+        </span>
+      </label>
+    </div>
+
+    <!-- Itinerary (Hidden Initially) -->
+    <div id="itinerary" class="mt-6 text-left text-gray-700 hidden">
+      <h3 class="text-xl font-semibold text-pink-600 mb-2">Terms and Conditions:</h3>
+      <p class="text-lg">
+        I’d love to invite you to a fun early birthday celebration at **Cubao Gateway**!  
+        After that, we can enjoy a nice dinner together starting from **2 PM onwards**.  
+        Let me know what you think! 😊
+      </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-center gap-4">
+      <button class="bg-pink-500 text-white px-4 py-2 rounded-lg shadow opacity-50 cursor-not-allowed" id="yesButton" disabled>
+        Yes 🙋
+      </button>
+      <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg shadow opacity-50 cursor-not-allowed" id="maybeButton" disabled>
+        Maybe 🧏
+      </button>
+    </div>
+
+    <!-- Hidden GIF & Message (Shows on "Yes" Click) -->
+    <div id="catGifContainer" class="hidden mt-6">
+      <img src="cat.gif" alt="Dancing Cat" class="mx-auto w-32 h-32">
+      <p class="text-xl font-semibold text-pink-600 mt-4">YAY! Can't wait to see you! 🎉</p>
+      <p class="text-xl font-semibold text-pink-600 mt-2">note: di ko to makikita 🤣 pasabi sakin ng sagot</p>
+    </div>
+  </div>
+
+  <script>
+    // Show Itinerary When Clicking "Terms and Conditions"
+    document.getElementById('termsLink').addEventListener('click', (e) => {
+      e.preventDefault(); 
+      document.getElementById('itinerary').classList.remove('hidden');
+      document.getElementById('termsCheckbox').disabled = false; 
+    });
+
+    // Enable Buttons When Checkbox is Checked
+    document.getElementById('termsCheckbox').addEventListener('change', (e) => {
+      const yesButton = document.getElementById('yesButton');
+      const maybeButton = document.getElementById('maybeButton');
+      
+      if (e.target.checked) {
+        yesButton.disabled = false;
+        maybeButton.disabled = false;
+        yesButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        maybeButton.classList.remove('opacity-50', 'cursor-not-allowed');
+      } else {
+        yesButton.disabled = true;
+        maybeButton.disabled = true;
+        yesButton.classList.add('opacity-50', 'cursor-not-allowed');
+        maybeButton.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+    });
+
+    // Show Dancing Cat GIF When "Yes" is Clicked
+    document.getElementById('yesButton').addEventListener('click', () => {
+      document.getElementById('catGifContainer').classList.remove('hidden');
+    });
+
+    // Alert Message for "Maybe"
+    document.getElementById('maybeButton').addEventListener('click', () => {
+      alert('Reschedule? 🤠');
+    });
+  </script>
+</body>
+</html>
